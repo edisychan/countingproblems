@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Problems Involving Symmetry</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Using Three.js r128 (UMD compatible) and OrbitControls for checking locally without server -->
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Counting Problems Involving Symmetry</h1>
+            <!-- Removed subtitle as requested -->
+        </header>
+
+        <nav>
+            <button class="nav-btn active" data-target="dice-section">1. Distinct Dice</button>
+            <button class="nav-btn" data-target="card-section">2. Card Hands</button>
+            <button class="nav-btn" data-target="necklace-section">3. Necklaces</button>
+        </nav>
+
+        <main>
+            <!-- SECTION 1: DICE -->
+            <section id="dice-section" class="active-section">
+                <div class="vis-container">
+                    <div class="canvas-wrapper" id="dice-canvas-container">
+                        <!-- Three.js Canvas will be injected here -->
+                    </div>
+                    <div class="controls">
+                        <h2>Distinct Dice</h2>
+                        <p>Label a Die with 1-6 Dots.</p>
+                        <div class="control-subgroup">
+                            <h4>Face Axes (90°)</h4>
+                            <button id="dice-rotate-x">X-Axis</button>
+                            <button id="dice-rotate-y">Y-Axis</button>
+                            <button id="dice-rotate-z">Z-Axis</button>
+                        </div>
+                        <div class="control-subgroup">
+                            <h4>Body Diagonals (120°)</h4>
+                            <button id="dice-rotate-v1">Diag 1 (+,+,+)</button>
+                            <button id="dice-rotate-v2">Diag 2 (-,+,+)</button>
+                            <button id="dice-rotate-v3">Diag 3 (+,-,+)</button>
+                            <button id="dice-rotate-v4">Diag 4 (+,+,-)</button>
+                        </div>
+                        <div class="control-subgroup">
+                            <h4>Edge Centers (180°)</h4>
+                            <div class="mini-group">
+                                <span>XY:</span>
+                                <button id="dice-rotate-e1">x=y</button>
+                                <button id="dice-rotate-e2">x=-y</button>
+                            </div>
+                            <div class="mini-group">
+                                <span>XZ:</span>
+                                <button id="dice-rotate-e3">x=z</button>
+                                <button id="dice-rotate-e4">x=-z</button>
+                            </div>
+                            <div class="mini-group">
+                                <span>YZ:</span>
+                                <button id="dice-rotate-e5">y=z</button>
+                                <button id="dice-rotate-e6">y=-z</button>
+                            </div>
+                        </div>
+                        <div class="control-subgroup">
+                            <h4>Actions</h4>
+                            <button id="dice-shuffle">Shuffle Faces</button>
+                            <button id="dice-reset">Reset Position</button>
+                        </div>
+                        <div class="info-panel">
+                            <!-- Removed Formula and Permutation Info -->
+                            <h3 style="margin:0 0 5px 0; color:#38bdf8">Try Rotating the Die. Any Observations?
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: CARDS -->
+            <section id="card-section">
+                <div class="vis-container">
+                    <div class="card-display" id="card-display-area">
+                        <!-- Cards will appear here -->
+                    </div>
+                    <div class="controls">
+                        <h2>Card Hands</h2>
+                        <p>3 Identical Decks Mixed. Draw 3 Cards.</p>
+                        <div class="control-group">
+                            <button id="btn-draw-hand">Draw Random Hand</button>
+                            <button id="btn-show-perms">Show All Permutations</button>
+                            <!-- Changed Sort to Show Perms -->
+                        </div>
+                        <div class="info-panel">
+                            <h3 style="margin:0 0 5px 0; color:#38bdf8">Current Permutation: <span
+                                    id="perm-label">Original</span></h3>
+                            <div id="all-perms-list" style="margin-top:10px; font-family: monospace;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: NECKLACE -->
+            <section id="necklace-section">
+                <div class="vis-container">
+                    <div class="necklace-canvas-wrapper" id="necklace-container">
+                        <!-- SVG or Canvas for Necklace -->
+                        <svg id="necklace-svg" viewBox="0 0 400 400" width="100%" height="100%">
+                            <!-- Dynamic content -->
+                        </svg>
+                    </div>
+                    <div class="controls">
+                        <h2>Necklaces</h2>
+                        <p>2 Black & 2 White Beads. Make a Necklace.</p>
+                        <div class="control-group">
+                            <button id="neck-rotate">Rotate 90°</button>
+                            <button id="neck-reflect">Reflect</button>
+                            <button id="neck-toggle-type">Change Type</button> <!-- Changed Reset to Change Type -->
+                        </div>
+                        <div class="info-panel">
+                            <div id="orbit-list">
+                                <!-- Type info -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MathJax for formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Standard Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
